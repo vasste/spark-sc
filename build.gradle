@@ -15,8 +15,15 @@ repositories {
 dependencies {
     implementation "com.devexperts.qd:qds:3.255"
 
-    implementation "com.sparkjava:spark-core:2.4.0"
-    implementation "org.apache.spark:spark-streaming_2.12:2.4.0"
-    compile group: 'org.apache.spark', name: 'spark-sql_2.12', version: '2.4.0'
+    //implementation "com.sparkjava:spark-core:2.4.0"
+    //implementation "org.apache.spark:spark-streaming_2.12:2.4.0"
+    implementation "org.apache.spark:spark-sql_2.12:2.4.0"
+    implementation "org.apache.spark:spark-launcher_2.12:2.4.0"
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = "org.Application"
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
 }
